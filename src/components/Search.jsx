@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import {collection,query,where,getDocs,setDoc,doc,updateDoc,serverTimestamp,getDoc} from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from '../context/AuthContext';
+import { InputContext } from '../context/InputContext';
 
 export const Search = () => {
   const [userTypedName, setTypedUserName] = useState("");
@@ -31,9 +32,8 @@ export const Search = () => {
 
   const handleSelect=async()=>{
     //check whether the chats in firestore exists, if not then create
-    const combinedId= currentUser.uid>user.uid?currentUser.uid+user.uid:user.uid+currentUser.uid;
-    console.log(currentUser.uid);
-    console.log(combinedId);
+    const combinedId= currentUser.uid>user.uid?currentUser.uid+user.uid:user.uid+currentUser.uid;  
+
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
 

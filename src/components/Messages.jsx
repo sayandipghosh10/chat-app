@@ -3,11 +3,15 @@ import { Message } from "./Message.jsx";
 import { ChatContext } from '../context/ChatContext';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
+import { InputContext } from '../context/InputContext.jsx';
 
 
 export const Messages = () => {
   const [messages, setMessages] = useState([]);
   const { data } = useContext(ChatContext);
+  const {checkUserSelectOrNotBasedOnInputComponentShow} =useContext(InputContext);
+
+  
 
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
@@ -21,7 +25,7 @@ export const Messages = () => {
   }, [data.chatId])
 
   return (
-    <div className='messages' id='msg'>
+    <div className={checkUserSelectOrNotBasedOnInputComponentShow ? 'messages' : 'messages notSelectedUser'} id='msg'>
       
       {messages.map((m) => (
         <Message message={m} key={m.id}/>

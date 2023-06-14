@@ -5,10 +5,15 @@ import More from "../img/more.png";
 import { Messages } from './Messages';
 import { Input } from './Input';
 import { ChatContext } from '../context/ChatContext';
+import { InputContext } from '../context/InputContext';
 
 export const Chat = () => {
 
   const { data } = useContext(ChatContext);
+  const {checkUserSelectOrNotBasedOnInputComponentShow,setCheckUserSelectOrNotBasedOnInputComponentShow} =useContext(InputContext);
+  if(data.user?.displayName){
+    setCheckUserSelectOrNotBasedOnInputComponentShow(true);
+  }
   return (
     <div className='chat'>
       <div className="chatInfo">
@@ -18,9 +23,9 @@ export const Chat = () => {
           <img src={Add} alt="add icon" />
           <img src={More} alt="more icon" />
         </div>
-      </div>
+      </div>    
       <Messages/>
-      <Input/>
+      {checkUserSelectOrNotBasedOnInputComponentShow && <Input/>}     
     </div>
   )
 }

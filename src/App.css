@@ -183,6 +183,10 @@
 }
 .userChatInfo p{
   color: lightgray;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 230px; 
 }
 
 
@@ -217,6 +221,10 @@
   padding: 10px;
   height: calc(100% - 160px);
   overflow-x: hidden;
+}
+
+.messages.notSelectedUser{
+  height: calc(100% - 90px);
 }
 
 #msg::-webkit-scrollbar
@@ -311,6 +319,7 @@
   padding: 10px 20px;
   border-radius: 0 10px 10px 10px;
   max-width: max-content;
+  word-break: break-word;
 }
 .message .messageContent img{
   width: 50%;
@@ -325,8 +334,17 @@
   background-color: #8da4f1;
   color: white;
   border-radius: 10px 0 10px 10px;
+  word-wrap: break-word;
 }
-
+@keyframes vibrate {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+.send-button.vibrating {
+  animation: vibrate 0.3s linear infinite;
+}
 
 /* TABLET VIEW */
 
@@ -353,6 +371,9 @@
   .messages {
     height: calc(100% - 135px);
   }
+  .messages.notSelectedUser{
+    height: calc(100% - 90px);
+  }
   .input input {
     font-size: 16px;
   }
@@ -362,6 +383,12 @@
   .message .messageInfo span {
     font-size: 11px;
   }
+  .sidebar {
+    max-width: 200px;
+  }
+  .userChatInfo p{
+    max-width: 150px;
+  }
 }
 
 @media only screen and (max-width: 630px) {
@@ -370,7 +397,7 @@
   }
   .sidebar {
     flex: none;
-    width: 175px;
+    width: 150px;
   }
 
   .navbar .user button {
@@ -384,6 +411,9 @@
   .message .messageInfo span {
     font-size: 11px;
   }
+  .userChatInfo p{
+    max-width: 100px;
+  }
   
 }
 
@@ -394,7 +424,7 @@
     height: 95%;
   }
   .sidebar {
-    width: 145px;
+    width: 125px;
   }
   .navbar .user {
     gap: 5px;
@@ -405,6 +435,7 @@
   }
   .userChatInfo p {
     font-size: 13px;
+    max-width: 80px;
   }
   .input .send button {
     padding: 5px 10px;
