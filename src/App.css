@@ -94,6 +94,7 @@
 .sidebar{
   flex: 1;
   background-color: #3e3e3e;
+  overflow: hidden;
 }
 
 
@@ -159,6 +160,29 @@
 }
 
 /*-------Chats Component--------*/
+#scrollForChats{
+  height: 80%;
+  overflow-y: auto;
+}
+
+#scrollForChats::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #f5f5f5;
+}
+#scrollForChats::-webkit-scrollbar-thumb
+{
+	background-color: #5d5b8d;
+	border-radius: 10px;
+	background-image: -webkit-linear-gradient(0deg,
+	                                          rgba(255, 255, 255, 0.5) 25%,
+											  transparent 25%,
+											  transparent 50%,
+											  rgba(255, 255, 255, 0.5) 50%,
+											  rgba(255, 255, 255, 0.5) 75%,
+											  transparent 75%,
+											  transparent)
+}
 
 .userChat{
   display: flex;
@@ -336,14 +360,33 @@
   border-radius: 10px 0 10px 10px;
   word-wrap: break-word;
 }
-@keyframes vibrate {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-2px); }
-  75% { transform: translateX(2px); }
-  100% { transform: translateX(0); }
+@keyframes vibrating  {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  40% {
+    transform: translateX(2px) rotate(1deg);
+  }
+  60% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  80% {
+    transform: translateX(2px) rotate(1deg);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 .send-button.vibrating {
-  animation: vibrate 0.3s linear infinite;
+  animation: vibrating 0.3s ease-in-out;
+}
+
+#imgUploadPopUp{
+  color: white;
+  font-size: 0.7rem;
 }
 
 /* TABLET VIEW */
@@ -426,8 +469,17 @@
   .sidebar {
     width: 125px;
   }
+
+  .navbar {
+    height: 100px;
+    justify-content: flex-start;
+    gap: 10px;
+  }
   .navbar .user {
-    gap: 5px;
+    gap: 4px;
+  }
+  .navbar .user button {
+    margin-left: 2px;
   }
   .userChat img {
     width: 40px;

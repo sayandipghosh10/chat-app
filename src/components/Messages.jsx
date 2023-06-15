@@ -9,7 +9,7 @@ import { InputContext } from '../context/InputContext.jsx';
 export const Messages = () => {
   const [messages, setMessages] = useState([]);
   const { data } = useContext(ChatContext);
-  const {checkUserSelectOrNotBasedOnInputComponentShow} =useContext(InputContext);
+  const {checkUserSelectOrNotBasedOnInputComponentShow,uploadSuccessMessagePopup} =useContext(InputContext);
 
   
 
@@ -23,6 +23,7 @@ export const Messages = () => {
       unSub();
     }
   }, [data.chatId])
+
 
   return (
     <div className={checkUserSelectOrNotBasedOnInputComponentShow ? 'messages' : 'messages notSelectedUser'} id='msg'>

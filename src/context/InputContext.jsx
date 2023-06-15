@@ -5,11 +5,12 @@ export const InputContext = createContext();
 
 export const InputContextProvider = ({ children }) => {
 
-    const[checkBlankMsg,setCheckBlankMsg]=useState(false);
+    // const[checkBlankMsg,setCheckBlankMsg]=useState(false);
     const[checkUserSelectOrNotBasedOnInputComponentShow,setCheckUserSelectOrNotBasedOnInputComponentShow]=useState(false);
+    const[uploadSuccessMessagePopup, setUploadSuccessMessagePopup] = useState(false);
 
     return (
-        <InputContext.Provider value={{ checkBlankMsg,setCheckBlankMsg,checkUserSelectOrNotBasedOnInputComponentShow,setCheckUserSelectOrNotBasedOnInputComponentShow}}>
+        <InputContext.Provider value={{checkUserSelectOrNotBasedOnInputComponentShow,setCheckUserSelectOrNotBasedOnInputComponentShow,uploadSuccessMessagePopup, setUploadSuccessMessagePopup}}>
             {children}
         </InputContext.Provider>
     );

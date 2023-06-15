@@ -27,7 +27,7 @@ export const Search = () => {
   }
 
   const handleKey = (e) => {
-    e.code === "Enter" && handleSearch();
+    (e.code === "Enter" || e.key === "Enter") && handleSearch();
   }
 
   const handleSelect=async()=>{

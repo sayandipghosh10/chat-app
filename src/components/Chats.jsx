@@ -3,6 +3,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { db } from '../firebase';
 import { AuthContext } from '../context/AuthContext';
 import { ChatContext } from '../context/ChatContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCameraRetro } from '@fortawesome/free-solid-svg-icons';
+
 
 export const Chats = () => {
 
@@ -20,7 +23,7 @@ export const Chats = () => {
       return () => {
         unSub();
       }
-    }
+    } 
 
   }, [currentUser.uid]);
 
@@ -30,7 +33,7 @@ export const Chats = () => {
  
 
   return (
-    <div className='chats'>
+    <div className='chats' id='scrollForChats'>
 
       {Object.entries(chats)?.sort((a,b)=>b[1].date-a[1].date).map((chat) => (
     
@@ -38,11 +41,11 @@ export const Chats = () => {
           <img src={chat[1].userInfo.photoURL} alt={`${chat[1].userInfo.displayName}'s picture`} />
           <div className="userChatInfo">
             <span>{chat[1]?.userInfo?.displayName}</span>
-            <p>{chat[1]?.lastMessage?.text}</p>
+            <p>{chat[1]?.lastMessage?.img1?<FontAwesomeIcon icon={faCameraRetro} />:chat[1]?.lastMessage?.text}</p>
           </div>
         </div>
 
-      ))};
+      ))}
 
     </div>
   )

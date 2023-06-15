@@ -10,7 +10,9 @@ import { InputContext } from '../context/InputContext';
 export const Chat = () => {
 
   const { data } = useContext(ChatContext);
-  const {checkUserSelectOrNotBasedOnInputComponentShow,setCheckUserSelectOrNotBasedOnInputComponentShow} =useContext(InputContext);
+  const {checkUserSelectOrNotBasedOnInputComponentShow,setCheckUserSelectOrNotBasedOnInputComponentShow,uploadSuccessMessagePopup} =useContext(InputContext);
+
+
   if(data.user?.displayName){
     setCheckUserSelectOrNotBasedOnInputComponentShow(true);
   }
@@ -18,10 +20,11 @@ export const Chat = () => {
     <div className='chat'>
       <div className="chatInfo">
         <span>{data.user?.displayName}</span>
+        {uploadSuccessMessagePopup && <span id='imgUploadPopUp'>uploaded successfully!</span>}
         <div className="chatIcons">
-          <img src={Cam} alt="camera icon" />
+          {/* <img src={Cam} alt="camera icon" />
           <img src={Add} alt="add icon" />
-          <img src={More} alt="more icon" />
+          <img src={More} alt="more icon" /> */}
         </div>
       </div>    
       <Messages/>

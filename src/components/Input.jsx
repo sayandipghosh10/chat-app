@@ -19,7 +19,7 @@ export const Input = () => {
 
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
-  const { checkBlankMsg,setCheckBlankMsg } = useContext(InputContext);
+  const {setUploadSuccessMessagePopup } = useContext(InputContext);
 
   const handleSend= async()=>{
     
@@ -50,22 +50,24 @@ export const Input = () => {
         }),
       });
     }
-    else{
-      setCheckBlankMsg(true);
-      setTimeout(() => {
-        setCheckBlankMsg(false);
-      }, 400);
-    }
-
+    // else{
+    //   setCheckBlankMsg(true);
+    //   setTimeout(() => {
+    //     setCheckBlankMsg(false);
+    //   }, 400);
+    // }
+    
     await updateDoc(doc(db,"userChats",currentUser.uid),{
       [data.chatId+".lastMessage"]:{
         text,
+        img1:img?true:false   
       },
       [data.chatId+".date"]:serverTimestamp(),
     });
     await updateDoc(doc(db,"userChats",data.user.uid),{
       [data.chatId+".lastMessage"]:{
         text,
+        img1:img?true:false   
       },
       [data.chatId+".date"]:serverTimestamp()
     });
@@ -82,6 +84,8 @@ export const Input = () => {
     setUploadSuccess(true);
   };
 
+  setUploadSuccessMessagePopup(uploadSuccess);
+
   return (
     <div className='input'>
       <input type="text" placeholder='Type something...' onChange={e=>setText(e.target.value)} value={text}/>
@@ -90,9 +94,9 @@ export const Input = () => {
         <label htmlFor="file">
           <img src={Img} alt="" />
         </label>
-        <button className={`send-button ${checkBlankMsg ? 'vibrating' : ''}`} onClick={handleSend} >Send</button>
+        <button className="send-button" onClick={handleSend} disabled={(!text) && (!img)}>Send</button>
       </div>
-      {uploadSuccess && <span>Image uploaded successfully!</span>}
+      
     </div>
   )
 }
