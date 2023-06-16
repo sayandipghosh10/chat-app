@@ -67,7 +67,7 @@ export const Register = () => {
           <input type="text" placeholder='display name' required />
           <input type="email" placeholder='email' required/>
           <input type="password" placeholder='password' pattern=".{8,}" required title="Password length should be 8 characters or more."/>
-          <input style={{ display: "none" }} type="file" id='file' required/>
+          <input style={{ display: "none" }} type="file" id='file' required accept=".jpg,.jpeg,.png"/>
           <label htmlFor="file">
             <img src={Add} alt="" />
             <span>Add an avatar</span>
