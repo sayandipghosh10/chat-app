@@ -26,6 +26,9 @@ export const Message = ({ message }) => {
     return formattedTime;
   };
 
+  //Download img
+
+
   return (
     <div ref={ref} className={`message ${message.senderId === currentUser.uid && "owner"}`}>
       <div className="messageInfo">
@@ -34,7 +37,7 @@ export const Message = ({ message }) => {
       </div>
       <div className="messageContent">
         {message.text && <p>{message.text}</p>}
-        {message.img && <img src={message.img} alt="" />}
+        {message.img && <img src={message.img} alt=""/>}
       </div>
     </div>
   )

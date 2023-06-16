@@ -90,7 +90,7 @@ export const Input = () => {
     <div className='input'>
       <input type="text" placeholder='Type something...' onChange={e=>setText(e.target.value)} value={text}/>
       <div className="send">
-        <input type="file" style={{display:"none"}} id='file'onChange={handleFileChange} ref={fileInputRef}/>
+        <input type="file" style={{display:"none"}} id='file'onChange={handleFileChange} ref={fileInputRef} accept=".jpg,.jpeg,.png"/>
         <label htmlFor="file">
           <img src={Img} alt="" />
         </label>
